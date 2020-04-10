@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editor_voltar"
+        android:title="@string/voltar"
+        android:icon="@drawable/ic_seta_voltar"/>
+
+    <item
+        android:id="@+id/editor_girar_esquesra"
+        android:title="@string/esquerda"
+        android:icon="@drawable/ic_girar_esquerda"/>
+
+    <item
+        android:id="@+id/editor_girar_direita"
+        android:title="@string/direita"
+        android:icon="@drawable/ic_girar_direita"/>
+
+</menu>

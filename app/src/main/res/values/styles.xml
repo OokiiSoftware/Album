@@ -1,0 +1,107 @@
+<resources>
+    <!-- Base application theme. -->
+    <!-- Light theme. -->
+    <style name="AppThemeLight" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="iconTint">@color/tintColorL</item>
+        <item name="tintColor">@color/tintColorL</item>
+        <item name="textColor">@color/tintColorL</item>
+        <item name="android:textColor">@color/textColorL</item>
+        <item name="cardbackgroundColor">@color/cardColorL</item>
+        <item name="transparenteColor">@color/transparenteL</item>
+        <item name="android:windowBackground">@color/windowBackgroundL</item>
+
+        <item name="gradient">@drawable/bg_gradient_light</item>
+        <item name="ic_photo">@drawable/ic_photo_light</item>
+        <item name="ic_video">@drawable/ic_video_play_light</item>
+        <item name="ic_camera">@drawable/ic_camera_light</item>
+
+        <item name="toolbarStyle">@style/ToolBarStyleL</item>
+        <item name="bottomNavigationStyle">@style/bottomNavigationL</item>
+        <item name="checkboxStyle">@style/checkboxL</item>
+        <item name="radioButtonStyle">@style/radioButtonL</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+    </style>
+
+    <!-- Dark theme. -->
+    <style name="AppThemeDark" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryD</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkD</item>
+        <item name="colorAccent">@color/colorAccentD</item>
+
+        <item name="iconTint">@color/tintColorD</item>
+        <item name="tintColor">@color/tintColorD</item>
+        <item name="textColor">@color/tintColorD</item>
+        <item name="android:textColor">@color/textColorD</item>
+        <item name="cardbackgroundColor">@color/cardColorD</item>
+        <item name="transparenteColor">@color/transparenteD</item>
+        <item name="android:windowBackground">@color/windowBackgroundD</item>
+
+        <item name="gradient">@drawable/bg_gradient_dark</item>
+        <item name="ic_photo">@drawable/ic_photo_dark</item>
+        <item name="ic_video">@drawable/ic_video_play_dark</item>
+        <item name="ic_camera">@drawable/ic_camera_dark</item>
+
+        <item name="toolbarStyle">@style/ToolBarStyleD</item>
+        <item name="bottomNavigationStyle">@style/bottomNavigationD</item>
+        <item name="checkboxStyle">@style/checkboxD</item>
+        <item name="radioButtonStyle">@style/radioButtonD</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+    </style>
+
+    <style name="ToolBarStyleL" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/titleTextColorL</item>
+        <item name="subtitleTextColor">@color/subtitleTextColorL</item>
+    </style>
+    <style name="ToolBarStyleD" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimaryD</item>
+        <item name="titleTextColor">@color/titleTextColorD</item>
+        <item name="subtitleTextColor">@color/subtitleTextColorD</item>
+    </style>
+
+    <style name="bottomNavigationL">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="itemIconTint">@color/tintColorL</item>
+        <item name="itemTextColor">@color/titleTextColorL</item>
+    </style>
+    <style name="bottomNavigationD">
+        <item name="android:background">@color/colorPrimaryD</item>
+        <item name="itemIconTint">@color/tintColorD</item>
+        <item name="itemTextColor">@color/titleTextColorD</item>
+    </style>
+
+    <style name="checkboxL" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/textColorL</item>
+        <item name="android:buttonTint">@color/textColorL</item>
+    </style>
+    <style name="checkboxD" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/textColorD</item>
+        <item name="android:buttonTint">@color/textColorD</item>
+    </style>
+
+    <style name="radioButtonL" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/textColorL</item>
+        <item name="android:buttonTint">@color/textColorL</item>
+    </style>
+    <style name="radioButtonD" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/textColorD</item>
+        <item name="android:buttonTint">@color/textColorD</item>
+    </style>
+
+    <style name="AppThemePreview" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/preto</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="WindowAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+</resources>

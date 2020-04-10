@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_copiar"
+        android:title="@string/copiar"
+        android:icon="@drawable/ic_copy"/>
+
+    <item
+        android:id="@+id/nav_mover"
+        android:title="@string/mover"
+        android:icon="@drawable/ic_cut"/>
+
+    <item
+        android:id="@+id/nav_da"
+        android:title=""/>
+
+    <item
+        android:id="@+id/nav_selecionar_tudo"
+        android:title="@string/selecionar_tudo"
+        android:icon="@drawable/ic_select"/>
+</menu>

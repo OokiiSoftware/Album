@@ -1,0 +1,26 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.AlbumActivity">
+
+    <item
+        android:id="@+id/order"
+        android:icon="@drawable/ic_order_dcs_enabled"
+        android:title="@string/menu_order"
+        android:contentDescription="@string/image_order_descricao"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/altura"
+        android:title="@string/menu_tamanho"
+        android:icon="@drawable/ic_item_tamanho"
+        android:contentDescription="@string/item_altura_descricao"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/grid"
+        android:title="@string/menu_grid"
+        android:icon="@drawable/ic_grid_no_fix_enabled"
+        android:checkable="true"
+        android:contentDescription="@string/image_grid_descricao"
+        app:showAsAction="ifRoom"/>
+</menu>

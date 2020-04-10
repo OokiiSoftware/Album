@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editor_voltar"
+        android:title="@string/voltar"
+        android:icon="@drawable/ic_seta_voltar"/>
+
+    <item
+        android:id="@+id/editor_recortar_cancelar"
+        android:title="@string/cancelar"
+        android:icon="@drawable/ic_cancelar"/>
+
+    <item
+        android:id="@+id/editor_recortar_cortar"
+        android:title="@string/recortar"
+        android:icon="@drawable/ic_recortar_image"/>
+
+</menu>

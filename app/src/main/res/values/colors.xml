@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#D1D1D1</color>
+    <color name="colorAccent">#05ACFF</color>
+
+    <color name="colorPrimaryD">#535353</color>
+    <color name="colorPrimaryDarkD">#434343</color>
+    <color name="colorAccentD">#05ACFF</color>
+
+    <color name="windowBackgroundL">#fff</color>
+    <color name="windowBackgroundD">#444</color>
+
+    <color name="titleTextColorL">#444</color>
+    <color name="titleTextColorD">#ddd</color>
+
+    <color name="subtitleTextColorL">#555</color>
+    <color name="subtitleTextColorD">#ccc</color>
+
+    <color name="textColorL">#444</color>
+    <color name="textColorD">#ddd</color>
+
+    <color name="tintColorL">#333</color>
+    <color name="tintColorD">#ddd</color>
+
+    <color name="cardColorL">#ddd</color>
+    <color name="cardColorD">#666</color>
+
+    <color name="transparenteD">#aa000000</color>
+    <color name="transparenteL">#aaFFFFFF</color>
+
+
+    <color name="preto">#000000</color>
+    <color name="brancoLight">#111111</color>
+
+    <color name="transparent">#00000000</color>
+
+
+    <color name="pretoTransparenteLight">#88000000</color>
+
+    <color name="teste">#05ACFF</color>
+</resources>

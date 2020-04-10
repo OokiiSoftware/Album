@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editor_sair"
+        android:title="@string/sair"
+        android:icon="@drawable/ic_close"/>
+
+    <item
+        android:id="@+id/editor_girar"
+        android:title="@string/girar"
+        android:icon="@drawable/ic_girar"/>
+
+    <item
+        android:id="@+id/editor_cortar"
+        android:title="@string/recortar"
+        android:icon="@drawable/ic_recortar_image"/>
+
+    <item
+        android:id="@+id/editor_inverter"
+        android:title="@string/inverter"
+        android:icon="@drawable/ic_inverter_image"/>
+</menu>

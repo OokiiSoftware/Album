@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.PreviewPagerActivity">
+
+    <item
+        android:id="@+id/preview_compartilhar"
+        android:title="@string/menu_compartilhar"
+        android:icon="@drawable/ic_share_light_enabled"
+        android:contentDescription="@string/menu_compartilhar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/preview_deletar"
+        android:title="@string/menu_excluir"
+        android:icon="@drawable/ic_delete_light_enabled"
+        android:contentDescription="@string/menu_excluir"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/preview_auto_play"
+        android:title="@string/menu_auto_play"
+        android:icon="@drawable/ic_video_play_dark"
+        android:contentDescription="@string/menu_auto_play"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/preview_editar"
+        android:title="@string/menu_editar"
+        android:icon="@drawable/ic_editar_light_enabled"
+        android:contentDescription="@string/menu_editar"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
+</menu>

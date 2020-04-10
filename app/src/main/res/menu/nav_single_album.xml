@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_share"
+        android:title="@string/menu_compartilhar"
+        android:icon="@drawable/ic_share_enabled"/>
+
+    <item
+        android:id="@+id/nav_delete"
+        android:title="@string/menu_excluir"
+        android:icon="@drawable/ic_delete_enabled"/>
+
+    <item
+        android:id="@+id/nav_selecionar_intervalo"
+        android:title="@string/selecionar_intervalo"
+        android:icon="@drawable/ic_seta_dupla_horizontal"/>
+
+    <item
+        android:id="@+id/nav_mais"
+        android:title="@string/mais"
+        android:icon="@drawable/ic_order_dcs"/>
+</menu>

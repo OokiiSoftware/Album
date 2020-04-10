@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editor_voltar"
+        android:title="@string/voltar"
+        android:icon="@drawable/ic_seta_voltar"/>
+
+    <item
+        android:id="@+id/editor_inverter_horizontal"
+        android:title="@string/horizontal"
+        android:icon="@drawable/ic_seta_dupla_horizontal"/>
+
+    <item
+        android:id="@+id/editor_inverter_vertical"
+        android:title="@string/vertical"
+        android:icon="@drawable/ic_seta_dupla_vertical"/>
+</menu>

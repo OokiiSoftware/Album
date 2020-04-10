@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.AlbunsActivity">
+
+    <item
+        android:id="@+id/order"
+        android:icon="@drawable/ic_order_dcs_enabled"
+        android:title="@string/menu_order"
+        android:contentDescription="@string/album_order_descricao"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/altura"
+        android:title="@string/menu_tamanho"
+        android:icon="@drawable/ic_item_tamanho"
+        android:contentDescription="@string/item_altura_descricao"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/tema"
+        android:title="@string/menu_tema"
+        android:icon="@drawable/ic_gradient_light"
+        android:contentDescription="@string/menu_tema"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/hide"
+        android:title="@string/album_hide"
+        android:icon="@drawable/ic_album_show_disabled"
+        android:enabled="false"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_album_show_disabled"
+        app:showAsAction="ifRoom"/>
+
+</menu>

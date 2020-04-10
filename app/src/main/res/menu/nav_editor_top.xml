@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editor_btn_desfazer"
+        android:title=""/>
+
+    <item
+        android:id="@+id/editor_btn_refazer"
+        android:title=""/>
+
+    <item
+        android:id="@+id/editor_btn_reset"
+        android:title=""
+        android:icon="@drawable/ic_reset"/>
+
+    <item
+        android:id="@+id/editor_btn_salvar"
+        android:title=""
+        android:icon="@drawable/ic_salvar_image"/>
+</menu>
