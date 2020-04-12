@@ -1,5 +1,6 @@
 package com.ookiisoftware.album.activity;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -23,8 +24,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -42,6 +45,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ookiisoftware.album.R;
 import com.ookiisoftware.album.adapter.AlbumAdapter;
+import com.ookiisoftware.album.adapter.AlbunsAdapter;
+import com.ookiisoftware.album.async.InBackground;
 import com.ookiisoftware.album.auxiliar.Config;
 import com.ookiisoftware.album.auxiliar.Constantes;
 import com.ookiisoftware.album.auxiliar.Function;
@@ -62,7 +67,7 @@ import static android.widget.ImageView.ScaleType.FIT_CENTER;
 public class AlbumActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     //region Variáveis
-//    private final String TAG = "SingleAlbumActivity";
+    private static final String TAG = "AlbumActivity";
     // Layout elements
     private Dialog dialog = null;
     private TextView fab_text_count;
@@ -72,7 +77,6 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
     private FloatingActionButton fab_item_count;
     private MenuItem menuItem_altura, menuItem_onder;
 
-//    private final int NAV_ID_SHARE = 0, NAV_ID_DELETE = 1, NAV_ID_UNSELECT_ALL = 2, NAV_ID_SELECT_ALL = 3;
     private ArrayList<HashMap<String, String>> imageList = new ArrayList<>();
     private OnSwipeListener onSwipeListener = new OnSwipeListener() {
         @Override
@@ -95,141 +99,6 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                 if (dialog.isShowing())
                     dialog.dismiss();
         }
-
-        /*@Override
-        public void onSingleTouch() {
-            super.onSingleTouch();
-            if (Constantes.SELECIONAR_ITEM) {
-                if (itens_selecionados.contains(Function.item_clicado.getId())) {// Remove o item
-                    for (int i = 0; i < itens_selecionados.size(); i++)
-                        if (itens_selecionados.get(i) == Function.item_clicado.getId())
-                            itens_selecionados.remove(i);
-                    switchItemClicado("desmarcar", (ConstraintLayout) Function.item_clicado.getParent());
-                } else {// Adiciona o item
-                    itens_selecionados.add(Function.item_clicado.getId());
-                    switchItemClicado("marcar", (ConstraintLayout) Function.item_clicado.getParent());
-                }
-
-                navBar.getMenu().getItem(NAV_ID_SHARE).setEnabled(itens_selecionados.size() != 0);
-                navBar.getMenu().getItem(NAV_ID_DELETE).setEnabled(itens_selecionados.size() != 0);
-
-                if (itens_selecionados.size() == 0) {
-                    //menuItem_usar_como.setVisible(false);
-                    fab_text_count.setText("0");
-                    fab_item_count.setEnabled(false);
-                    fab_item_count.setImageResource(R.drawable.ic_null);
-
-                    navBar.getMenu().getItem(NAV_ID_SHARE).setEnabled(false);
-                    navBar.getMenu().getItem(NAV_ID_DELETE).setEnabled(false);
-                    navBar.getMenu().getItem(NAV_ID_UNSELECT_ALL).setEnabled(false);
-                } else if (itens_selecionados.size() == 1) {
-                    //menuItem_usar_como.setVisible(true);
-                    if (imageList.get(itens_selecionados.get(0)).get(Function.KEY_ITEM_TYPE).equals(Constantes.ITEM_TYPE_VIDEO)) {
-                        fab_item_count.setImageResource(R.drawable.ic_null);
-                        fab_item_count.setEnabled(false);
-                        fab_text_count.setText("1");
-                    } else {
-                        fab_item_count.setImageResource(R.drawable.ic_editar_light_enabled);
-                        fab_item_count.setEnabled(true);
-                        fab_text_count.setText(null);
-                    }
-
-                    navBar.getMenu().getItem(NAV_ID_SHARE).setEnabled(true);
-                    navBar.getMenu().getItem(NAV_ID_DELETE).setEnabled(true);
-                    navBar.getMenu().getItem(NAV_ID_UNSELECT_ALL).setEnabled(true);
-                } else {
-                    //menuItem_usar_como.setVisible(false);
-                    fab_item_count.setEnabled(false);
-                    fab_item_count.setImageResource(R.drawable.ic_null);
-                    fab_text_count.setText(ItemCountToText(itens_selecionados.size()));
-
-                    navBar.getMenu().getItem(NAV_ID_SHARE).setEnabled(true);
-                    navBar.getMenu().getItem(NAV_ID_DELETE).setEnabled(true);
-                    navBar.getMenu().getItem(NAV_ID_UNSELECT_ALL).setEnabled(true);
-                }
-            } else {
-                transition(Function.item_clicado, Function.item_clicado.getId());
-            }
-        }
-
-        @Override
-        public void onLongTouch() {
-            super.onLongTouch();
-            if (Constantes.IMAGE_ROW != 1) {
-                Constantes.firstInit.Primeira_inicializacao(SingleAlbumActivity.this, Constantes.firstInit.LONG_CLICK_ID, pref, true);
-
-                Uri uri = Uri.parse(imageList.get(+Function.item_clicado.getId()).get(Function.KEY_PATH));
-                String type = imageList.get(+Function.item_clicado.getId()).get(Function.KEY_ITEM_TYPE);
-                if (type.equalsIgnoreCase(Constantes.ITEM_TYPE_IMAGE))
-                    loadPhotoPopup(true, uri);
-                else
-                    loadPhotoPopup(false, uri);
-                recyclerView.setLayoutFrozen(true);
-            }
-        }
-
-        @Override
-        public void onSingleTouchUp() {
-            super.onSingleTouchUp();
-            if (dialog != null)
-                if (dialog.isShowing())
-                    dialog.dismiss();
-            recyclerView.setLayoutFrozen(false);
-        }
-
-        @Override
-        public void onDoubleTouch() {
-            super.onDoubleTouch();
-            if (!Config.SELECIONAR_ITEM) {
-                Constantes.firstInit.firstUse(AlbumActivity.this, Constantes.firstInit.DOUBLE_CLICK_ID, pref, true);
-                //menuItem_usar_como.setVisible(true);
-                Config.SELECIONAR_ITEM = true;
-                AtualizarMenu(false);
-                itens_selecionados = new ArrayList<>();
-                itens_selecionados.add(Function.item_clicado.getId());
-
-//                switchItemClicado("marcar", (ConstraintLayout) Function.item_clicado.getParent());
-                {
-                    if (Config.IMAGE_ORDER_DIRECTION.equals(Function.KEY_ORDER_DCS))
-                        menuItem_onder.setIcon(R.drawable.ic_order_dcs_disabled);
-                    else
-                        menuItem_onder.setIcon(R.drawable.ic_order_asc_disabled);
-                }// if (Config.IMAGE_ORDER_DIRECTION.equals(Function.KEY_ORDER_DCS))
-
-                fab_item_count.show();
-                if (imageList.get(itens_selecionados.get(0)).get(Function.KEY_ITEM_TYPE).equals(Constantes.ITEM_TYPE_VIDEO)) {
-                    fab_text_count.setText("1");
-                    fab_item_count.setImageResource(R.drawable.ic_null);
-                    fab_item_count.setEnabled(false);
-                } else {
-                    fab_item_count.setEnabled(true);
-                    fab_item_count.setImageResource(R.drawable.ic_editar_light_enabled);
-//                }
-
-                    navBar.getMenu().getItem(NAV_ID_SHARE).setEnabled(true);
-                    navBar.getMenu().getItem(NAV_ID_DELETE).setEnabled(true);
-
-                    Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_up);
-                    animation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            navBar.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-                    navBar.startAnimation(animation);
-                }
-            }
-        }*/
     };
     private int device_orientation;
     private SharedPreferences pref;
@@ -243,6 +112,11 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
     private Constantes.Armazenamento armazenamento;
     private int[] doisUltimos = new int[2];
     private int spanCount;
+
+    private AlbunsAdapter adapterCopyMove;
+    private InBackground background;
+    private boolean disableAdapterCopyMoveClick;
+
     //endregion
 
     //region Overrides
@@ -296,8 +170,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS)) {
             menuItem_onder.setIcon(R.drawable.ic_order_dcs_enabled);
             Config.ORDER_CRESCENTE = false;
-        }
-        else {
+        } else {
             menuItem_onder.setIcon(R.drawable.ic_order_asc_enabled);
             Config.ORDER_CRESCENTE = true;
         }
@@ -398,11 +271,13 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
             }
             case R.id.nav_mais: {
                 if (Objects.equals(item.getTitle(), getString(R.string.mais))) {
-                    navBar_2.setVisibility(View.VISIBLE);
+//                    navBar_2.setVisibility(View.VISIBLE);
+                    bottonMenu_2(true);
                     item.setIcon(R.drawable.ic_order_asc);
                     item.setTitle(R.string.menos);
                 } else {
-                    navBar_2.setVisibility(View.GONE);
+//                    navBar_2.setVisibility(View.GONE);
+                    bottonMenu_2(false);
                     item.setIcon(R.drawable.ic_order_dcs);
                     item.setTitle(R.string.mais);
                 }
@@ -410,11 +285,22 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
             }
 
             case R.id.nav_copiar: {
-
+                if (itemsTemp.size() == 0)
+                    break;
+                popupCopyMoveFile(itemsTemp, true);
                 break;
             }
             case R.id.nav_mover: {
-
+                if (itemsTemp.size() == 0)
+                    break;
+                popupCopyMoveFile(itemsTemp,false);
+                break;
+            }
+            case R.id.nav_set_wallpaper: {
+                if (itemsTemp.size() != 1)
+                    break;
+                String path = itemsTemp.get(0).get(Item.KEY_PATH);
+                Import.wallpaper.set(activity, path);
                 break;
             }
             case R.id.nav_selecionar_tudo: {
@@ -462,6 +348,10 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         //endregion
 
         //region Navbar
+
+        bottonMenu(false);
+        bottonMenu_2(false);
+
         navBar.setOnNavigationItemSelectedListener(this);
         navBar.setVisibility(View.GONE);
         navBar.getMenu().findItem(R.id.nav_share).setCheckable(false);
@@ -470,6 +360,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         navBar_2.setVisibility(View.GONE);
         navBar_2.getMenu().findItem(R.id.nav_copiar).setCheckable(false);
         navBar_2.getMenu().findItem(R.id.nav_mover).setCheckable(false);
+
         //endregion
 
         //region Bundle
@@ -515,7 +406,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
 
         //endregion
 
-        //region Mostrar tutorial e e ler configurações
+        //region Mostrar tutorial e ler configurações
         pref = getSharedPreferences("info", MODE_PRIVATE);
 //        Constantes.firstInit.firstUse(this, Constantes.firstInit.GRIDE_ID, pref, false);
 //        Constantes.firstInit.firstUse(this, Constantes.firstInit.GRIDE_ID, pref, true);
@@ -583,41 +474,95 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         SELECIONAR_ITEM = false;
         fab_text_count.setText(null);
         fab_item_count.hide();
-        //menuItem_usar_como.setVisible(false);
 
         //region Config.IMAGE_ORDER_DIRECTION
-        if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS))
-            menuItem_onder.setIcon(R.drawable.ic_order_dcs_enabled);
-        else
-            menuItem_onder.setIcon(R.drawable.ic_order_asc_enabled);
+//        if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS))
+//            menuItem_onder.setIcon(R.drawable.ic_order_dcs_enabled);
+//        else
+//            menuItem_onder.setIcon(R.drawable.ic_order_asc_enabled);
         //endregion
 
         //region Animation
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_down);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {}
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                navBar.setVisibility(View.GONE);
-                navBar_2.setVisibility(View.GONE);
-
-                navBar.getMenu().findItem(R.id.nav_mais).setIcon(R.drawable.ic_order_dcs);
-                navBar.getMenu().findItem(R.id.nav_mais).setTitle(R.string.mais);
-
-                navBar_2.getMenu().findItem(R.id.nav_selecionar_tudo).setIcon(R.drawable.ic_select);
-                navBar_2.getMenu().findItem(R.id.nav_selecionar_tudo).setTitle(R.string.selecionar_tudo);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        navBar.startAnimation(animation);
+        bottonMenu(false);
         //endregion
     }
 
-    private void Ordem(boolean ordem_asc, SharedPreferences.Editor editor){
+    private void bottonMenu(boolean mostrar) {
+        if (mostrar) {
+            navBar.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    navBar.setVisibility(View.VISIBLE);
+                    if (Objects.equals(navBar.getMenu().findItem(R.id.nav_mais).getTitle(), getResources().getString(R.string.menos)))
+                        bottonMenu_2(true);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {}
+
+                @Override
+                public void onAnimationCancel(Animator animation) {}
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {}
+            });
+        } else {
+            navBar.animate().translationY(-navBar.getHeight()).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    bottonMenu_2(false);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    navBar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {}
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {}
+            });;
+        }
+    }
+    private void bottonMenu_2(boolean mostrar) {
+        if (mostrar) {
+            navBar_2.animate().translationY(0).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    navBar_2.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {}
+
+                @Override
+                public void onAnimationCancel(Animator animation) {}
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {}
+            });
+        } else {
+            navBar_2.animate().translationY(-navBar_2.getHeight()).setListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {}
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    navBar_2.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {}
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {}
+            });
+        }
+    }
+
+    private void Ordem(boolean ordem_asc, SharedPreferences.Editor editor) {
         if(ordem_asc) {
             Config.photo.ORDER_DIRECTION = Item.KEY_ORDER_ASC;
             menuItem_onder.setIcon(R.drawable.ic_order_asc_enabled);
@@ -630,7 +575,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         Common(editor);
     }
 
-    private void Common(SharedPreferences.Editor editor){
+    private void Common(SharedPreferences.Editor editor) {
         editor.apply();
         Collections.sort(imageList, new MapComparator(ordenarPor, Config.photo.ORDER_DIRECTION));
         if(adapter != null)
@@ -682,6 +627,48 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
             video.requestLayout();
             video.bringToFront();
         }
+    }
+
+    private void popupCopyMoveFile(ArrayList<HashMap<String, String>> items, boolean isCopy) {
+        Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.popup_copy_move);
+
+        RecyclerView recyclerView = dialog.findViewById(R.id.recycler);
+        ProgressBar progressBar = dialog.findViewById(R.id.progressBar);
+        Button cancel = dialog.findViewById(R.id.cancel_button);
+
+        adapterCopyMove = new AlbunsAdapter(activity, Import.pastas, onSwipeListener) {
+            @Override
+            public void onClick(View v) {
+                if (!disableAdapterCopyMoveClick) {
+                    int itemPosition = recyclerView.getChildAdapterPosition(v);
+                    HashMap<String, String> item = adapterCopyMove.getItem(itemPosition);
+                    String destino = item.get(Item.KEY_PATH);
+                    int acao = 0;
+                    if (isCopy)
+                        acao = Constantes.FILE_COPY;
+                    else
+                        acao = Constantes.FILE_MOVE;
+
+                    Import.Alert.snakeBar(dialog.getCurrentFocus(), getResources().getString(R.string.aguarde));
+                    progressBar.setVisibility(View.VISIBLE);
+                    disableAdapterCopyMoveClick = true;
+                    background = new InBackground(activity, items, adapter, dialog, acao, destino);
+                    background.execute();
+                } else
+                    Import.Alert.snakeBar(dialog.getCurrentFocus(), getResources().getString(R.string.aguarde));
+            }
+        };
+        recyclerView.setAdapter(adapterCopyMove);
+
+        cancel.setOnClickListener(v2 -> {
+            if (background != null)
+                background.cancel(true);
+            Import.Alert.snakeBar(getCurrentFocus(), getResources().getString(R.string.acao_cancelada));
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
     private void onSwipeED(int direcao) {
@@ -738,12 +725,10 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
             if (armazenamento == Constantes.Armazenamento.Interno) {
                 cursorImage = new MergeCursor(new Cursor[]{cursorInternalImage});
                 cursorVideo = new MergeCursor(new Cursor[]{cursorInternalVideo});
-            }
-            else if (armazenamento == Constantes.Armazenamento.Externo) {
+            } else if (armazenamento == Constantes.Armazenamento.Externo) {
                 cursorImage = new MergeCursor(new Cursor[]{cursorExternalImage});
                 cursorVideo = new MergeCursor(new Cursor[]{cursorExternalVideo});
-            }
-            else {
+            } else {
                 cursorImage = new MergeCursor(new Cursor[]{cursorExternalImage, cursorInternalImage});
                 cursorVideo = new MergeCursor(new Cursor[]{cursorExternalVideo, cursorInternalVideo});
             }
@@ -881,10 +866,10 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                                 adapter.select( item);
 
                                 //region Config.IMAGE_ORDER_DIRECTION
-                                if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS))
-                                    menuItem_onder.setIcon(R.drawable.ic_order_dcs_disabled);
-                                else
-                                    menuItem_onder.setIcon(R.drawable.ic_order_asc_disabled);
+//                                if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS))
+//                                    menuItem_onder.setIcon(R.drawable.ic_order_dcs_disabled);
+//                                else
+//                                    menuItem_onder.setIcon(R.drawable.ic_order_asc_disabled);
                                 //endregion
 
                                 fab_item_count.show();
@@ -902,7 +887,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                                 navBar.getMenu().findItem(R.id.nav_share).setEnabled(true);
                                 navBar.getMenu().findItem(R.id.nav_delete).setEnabled(true);
 
-                                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_up);
+                                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_down);
                                 animation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
@@ -915,7 +900,8 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                                     @Override
                                     public void onAnimationRepeat(Animation animation) {}
                                 });
-                                navBar.startAnimation(animation);
+//                                navBar.startAnimation(animation);
+                                bottonMenu(true);
                             }
                         }
                         clicks = 0;
@@ -943,8 +929,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                 }
             };
             recyclerView.setAdapter(adapter);
-//            Import.setRecyclerMananger(recyclerView, spanCount);
-//            recyclerView.setOnTouchListener(onSwipeListener);
         }
     }
+
 }

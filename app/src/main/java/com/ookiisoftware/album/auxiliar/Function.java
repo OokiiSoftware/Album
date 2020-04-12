@@ -6,10 +6,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -33,9 +31,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Objects;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Function {
 
@@ -133,30 +128,31 @@ public class Function {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
+//        View layout;
 
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout;
-
-        assert inflater != null;
+//        assert inflater != null;
         try {
-            layout = inflater.inflate(R.layout.popup_delete, null);//(ViewGroup) layout.findViewById(R.id.popup_card)
+            dialog.setContentView(R.layout.popup_delete);
+//            layout = inflater.inflate(R.layout.popup_delete, null);//(ViewGroup) layout.findViewById(R.id.popup_card)
         } catch (Exception ex) {
-            layout = inflater.inflate(R.layout.popup_delete_alternative, null);
+            dialog.setContentView(R.layout.popup_delete_alternative);
+//            layout = inflater.inflate(R.layout.popup_delete_alternative, null);
         }
 
-        TextView titulo = layout.findViewById(R.id.titulo);
+        TextView titulo = dialog.findViewById(R.id.titulo);
         titulo.setText(_titulo);
 
-        final TextView nome_foto = layout.findViewById(R.id.nome);
-        final Button btn_sim = layout.findViewById(R.id.btn_sim);
-        final Button btn_nao = layout.findViewById(R.id.btn_nao);
+        final TextView nome_foto = dialog.findViewById(R.id.nome);
+        final Button btn_sim = dialog.findViewById(R.id.btn_sim);
+        final Button btn_nao = dialog.findViewById(R.id.btn_nao);
         btn_sim.setOnClickListener(view -> {
             if(albumAdapter == null) {
-                InBackground inBackground = new InBackground(activity, imageList, previewAdapter, dialog);
+                InBackground inBackground = new InBackground(activity, imageList, previewAdapter, dialog, Constantes.FILE_DELETE);
                 inBackground.execute();
             } else {
-                InBackground inBackground = new InBackground(activity, imageList, albumAdapter, dialog);
+                InBackground inBackground = new InBackground(activity, imageList, albumAdapter, dialog, Constantes.FILE_DELETE);
                 inBackground.execute();
             }
 
@@ -168,9 +164,9 @@ public class Function {
         btn_nao.setOnClickListener(view -> dialog.dismiss());
 
         if (imageList.size() == 1) {
-            TextView tamanho_foto = layout.findViewById(R.id.tamanho);
-            TextView dimenssao_foto = layout.findViewById(R.id.dimenssao);
-            ImageView image = layout.findViewById(R.id.image);
+            TextView tamanho_foto = dialog.findViewById(R.id.tamanho);
+            TextView dimenssao_foto = dialog.findViewById(R.id.dimenssao);
+            ImageView image = dialog.findViewById(R.id.image);
 
             //HashMap<String, String> song = imageList.get(item_id);
             String path = imageList.get(0).get(Item.KEY_PATH);
@@ -191,61 +187,14 @@ public class Function {
             nome_foto.setText(_mensagem);
         }
 
-        dialog.setContentView(layout);
+//        dialog.setContentView(layout);
         dialog.show();
     }
 
 
 
     //================================================== SET WALLPAPER =============================================================
-/*
 
-    static Bitmap bitmap1, bitmap2;
-    static int width, height;
 
-    public static void SetWallpaper (Context context, String path, WindowManager windowManager, LayoutInflater inflater) {
-        View view = inflater.inflate(R.layout.wallpaper_layout, null);
-
-        ImageView imageView = view.findViewById(R.id.image_wallpaper);
-        Glide.with(context).load(path).into(imageView);
-
-        WallpaperManager wallpaperManager  = WallpaperManager.getInstance(context);
-
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-
-        bitmap1 = bitmapDrawable.getBitmap();
-
-        //GetScreenWidthHeight(windowManager);
-
-        //SetBitmapSize();
-
-        try {
-            wallpaperManager.setBitmap(bitmap1);
-            Toast.makeText(context, "Papel de parede aplicado", Toast.LENGTH_SHORT).show();
-            //wallpaperManager.suggestDesiredDimensions(width, height);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private static void GetScreenWidthHeight(WindowManager windowManager){
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-
-        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
-
-        width = displayMetrics.widthPixels;
-
-        height = displayMetrics.heightPixels;
-
-    }
-
-    private static void SetBitmapSize(){
-
-        bitmap2 = Bitmap.createScaledBitmap(bitmap1, width, height, false);
-
-    }
-*/
     //==========================================================================================================
 }

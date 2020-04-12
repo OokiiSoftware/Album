@@ -61,4 +61,22 @@
     <string name="tutorial_double_click">ダブルクリックして選択します</string>
     <string name="tutorial_long_click">画像を表示するにはクリックしてください</string>
     <string name="selecionar_intervalo">範囲を選択</string>
+    <string name="copiar">コピーする</string>
+    <string name="mover">動く</string>
+    <string name="mais">もっと</string>
+    <string name="menos">少ない</string>
+    <string name="item_copiado">コピーしたアイテム</string>
+    <string name="itens_copiados">コピーしたアイテム</string>
+    <string name="item_movido">移動したアイテム</string>
+    <string name="itens_movidos">移動したアイテム</string>
+    <string name="msg_erro_copia">このアイテムはコピーできませんでした</string>
+    <string name="msg_erro_copias">コピーできませんでした</string>
+    <string name="msg_erro_move">このアイテムは移動できませんでした</string>
+    <string name="msg_erro_moves">移動できませんでした</string>
+    <string name="acao_cancelada">キャンセルされました</string>
+    <string name="itens">アイテム</string>
+    <string name="papel_de_parede_aplicado">応用壁紙</string>
+    <string name="erro_papel_de_parede">壁紙の適用エラー</string>
+    <string name="erro_papel_de_parede_not_supported">デバイスでサポートされていないアクション</string>
+    <string name="set_wallpaper">壁紙</string>
 </resources>

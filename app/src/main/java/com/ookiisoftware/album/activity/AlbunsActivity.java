@@ -545,10 +545,10 @@ public class AlbunsActivity extends AppCompatActivity {
                     }
                 };
                 recyclerView.setAdapter(adapter);
-            }
-            else {
+            } else {
                 adapterUpdate();
             }
+            Import.pastas = albumList;
         }
 
         @SuppressLint("InlinedApi")

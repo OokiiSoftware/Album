@@ -45,8 +45,6 @@
     <string name="aguarde">Aguarde</string>
     <string name="item_excluido">Item excluído</string>
     <string name="itens_excluidos">" Itens excluídos"</string>
-    <string name="msg_erro_delete">Não foi possível excluir este Item</string>
-    <string name="msg_erro_deletes">"Não foi possível excluir "</string>
     <string name="_00_00">00:00</string>
     <string name="menu_tema">Alternar tema</string>
     <string name="foto">" Foto"</string>
@@ -70,5 +68,23 @@
     <string name="mover">Mover</string>
     <string name="mais">Mais</string>
     <string name="menos">Menos</string>
+
+    <string name="itens">Itens</string>
+    <string name="item_copiado">Item copiado</string>
+    <string name="itens_copiados">Itens copiados</string>
+    <string name="item_movido">Item movido</string>
+    <string name="itens_movidos">Itens movidos</string>
+
+    <string name="msg_erro_delete">Não foi possível excluir este Item</string>
+    <string name="msg_erro_deletes">"Não foi possível excluir "</string>
+    <string name="msg_erro_copia">Não foi possível copiar este Item</string>
+    <string name="msg_erro_copias">Não foi possível copiar</string>
+    <string name="msg_erro_move">Não foi possível mover este Item</string>
+    <string name="msg_erro_moves">Não foi possível mover</string>
+    <string name="acao_cancelada">Cancelado</string>
+    <string name="set_wallpaper">Papel de parede</string>
+    <string name="papel_de_parede_aplicado">Papel de parede aplicado</string>
+    <string name="erro_papel_de_parede">Erro ao aplicar o papel de parede</string>
+    <string name="erro_papel_de_parede_not_supported">Ação não suportada pelo dispositivo</string>
 
 </resources>

@@ -22,6 +22,9 @@ public class Constantes {
     public static final String NIGHT_MODE = "night_mode";
     public static final String VIDEO_IS_PLEYING = "isPlaying";
     public static final String VIDEO_TIME = "video_time";
+    public static final int FILE_DELETE = 867;
+    public static final int FILE_MOVE = 243;
+    public static final int FILE_COPY = 126;
 
     public static class firstInit {
 

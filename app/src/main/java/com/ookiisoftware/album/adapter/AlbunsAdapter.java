@@ -108,6 +108,10 @@ public class AlbunsAdapter extends RecyclerView.Adapter<AlbunsAdapter.AlbunsView
         return data;
     }
 
+    public HashMap<String, String> getItem(int position) {
+        return data.get(position);
+    }
+
     static class AlbunsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image, video_icon;

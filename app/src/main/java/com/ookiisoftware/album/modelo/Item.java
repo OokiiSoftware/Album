@@ -136,6 +136,7 @@ public class Item {
 
         return cursor.getCount() == 1 ? cursor.getCount() + c.getString(R.string.foto) : cursor.getCount() + c.getString(R.string.fotos);
     }
+
     public static String getCountVideos(Context c, String album_name) {
         Uri uriExternal = android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
         Uri uriInternal = android.provider.MediaStore.Video.Media.INTERNAL_CONTENT_URI;
