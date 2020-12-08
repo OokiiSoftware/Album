@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/item_margin">
@@ -40,7 +41,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
@@ -48,55 +48,48 @@
         android:layout_height="match_parent"
         android:enabled="false">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="?attr/transparenteColor">
+            android:paddingHorizontal="7dp"
+            android:background="?attr/transparenteColor"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:orientation="vertical">
+                android:scrollHorizontally="true"
+                android:text="@string/album_name"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:shadowColor="?attr/colorPrimary"
+                android:shadowRadius="5.0"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollHorizontally="true"
-                    android:text="@string/album_name"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:shadowColor="?attr/colorPrimary"
-                    android:shadowRadius="5.0"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/image_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0_fotos"
+                android:maxLines="1"
+                android:shadowColor="?attr/colorPrimary"
+                android:shadowRadius="5.0"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/image_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_0_fotos"
-                    android:maxLines="1"
-                    android:shadowColor="?attr/colorPrimary"
-                    android:shadowRadius="5.0"
-                    android:textSize="12sp" />
+            <TextView
+                android:id="@+id/video_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0_videos"
+                android:maxLines="1"
+                android:shadowColor="?attr/colorPrimary"
+                android:shadowRadius="5.0"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/video_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_0_videos"
-                    android:maxLines="1"
-                    android:shadowColor="?attr/colorPrimary"
-                    android:shadowRadius="5.0"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

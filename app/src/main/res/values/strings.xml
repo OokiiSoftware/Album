@@ -2,88 +2,102 @@
     <string name="app_name">Album</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="nao">Não</string>
-    <string name="sim">Sim</string>
+    <string name="ads_app_id" translatable="false">ca-app-pub-1455252990647525~1272984497</string>
+    <string name="ads_banner_id" translatable="false">ca-app-pub-1455252990647525/5791987469</string>
+    <string name="ads_interstitial_id" translatable="false">ca-app-pub-1455252990647525/7705750656</string>
 
-    <string name="excluir_imagem">Excluir este item?</string>
-    <string name="album_hide">Álbuns Ocultos</string>
-    <string name="image_order_descricao">Ordenação dos itens pela data</string>
-    <string name="image_grid_descricao">Tipo de miniatura</string>
-
-    <string name="album_order_descricao">Ordenação dos albuns pela data</string>
-    <string name="item_altura_descricao">Altura dos itens</string>
-
+    <!-- TODO: Menus -->
+    <string name="menu_auto_play">Auto Play Vídeos</string>
+    <string name="menu_compartilhar">Compartilhar</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_excluir">Excluir</string>
     <string name="menu_grid">Grid Fixo</string>
     <string name="menu_order">Inverter Ordem</string>
     <string name="menu_tamanho">Tamanho da Miniatura</string>
-    <string name="menu_compartilhar">Compartilhar</string>
-    <string name="menu_excluir">Excluir</string>
-    <string name="menu_auto_play">Auto Play Vídeos</string>
-    <string name="menu_editar">Editar</string>
-    <string name="esquerda">Esquerda</string>
-    <string name="direita">Direita</string>
-    <string name="horizontal">Horizontal</string>
-    <string name="vertical">Vertical</string>
-    <string name="recortar">Recortar</string>
-    <string name="inverter">Inverter</string>
-    <string name="girar">Girar</string>
-    <string name="sair">Sair</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="ok">OK</string>
-    <string name="voltar">Voltar</string>
-    <string name="deselecionar_tudo">Desmarcar tudo</string>
-    <string name="selecionar_tudo">Marcar tudo</string>
-    <string name="nome">Nome</string>
-    <string name="_65_kb">65 Kb</string>
-    <string name="_655_x_533">655 x 533</string>
-    <string name="album_name">Álbum nome</string>
+    <string name="menu_tema">Alternar tema</string>
+
+    <!-- TODO: Palavras -->
+    <string name="_00_00">00:00</string>
     <string name="_0_fotos">0 Fotos</string>
     <string name="_0_videos">0 vídeos</string>
-    <string name="excluir_item">Excluir Item</string>
-    <string name="excluir_itens">Excluir Itens</string>
-    <string name="itens_selecionados">" Itens selecionados"</string>
+    <string name="_65_kb">65 Kb</string>
+    <string name="_655_x_533">655 x 533</string>
+
+    <string name="album_name">Álbum nome</string>
+    <string name="acao_cancelada">Cancelado</string>
+    <string name="ads">Ads</string>
     <string name="aguarde">Aguarde</string>
-    <string name="item_excluido">Item excluído</string>
-    <string name="itens_excluidos">" Itens excluídos"</string>
-    <string name="_00_00">00:00</string>
-    <string name="menu_tema">Alternar tema</string>
-    <string name="foto">" Foto"</string>
-    <string name="fotos">" Fotos"</string>
-    <string name="video">" Vídeo"</string>
-    <string name="videos">" Vídeos"</string>
-    <string name="nao_mostrar_novamente">Não mostrar novamente</string>
-    <string name="settings">Configurações</string>
-    <string name="mesclar_armazenamento_interno_e_externo">Mesclar armazenamento interno e externo</string>
-    <string name="mesclar_fotos_e_videos">Mesclar Fotos e Vídeos</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="copiar">Copiar</string>
 
     <string name="data">Data</string>
-    <string name="ordenar_album_por">Ordenar álbuns por:</string>
-    <string name="ordenar_photo_por">Ordenar fotos e vídeos por:</string>
-    <string name="reload_media">Recarregar Média</string>
-    <string name="tutorial_deslize">Deslize para alterar o número de colunas</string>
-    <string name="tutorial_double_click">Duplo clique para selecionar</string>
-    <string name="tutorial_long_click">Clique longo para visualizar a imagem</string>
-    <string name="selecionar_intervalo">Selec. intervalo</string>
-    <string name="copiar">Copiar</string>
-    <string name="mover">Mover</string>
+    <string name="direita">Direita</string>
+    <string name="esquerda">Esquerda</string>
+    <string name="excluir_item">Excluir Item</string>
+    <string name="excluir_itens">Excluir Itens</string>
+    <string name="foto">" Foto"</string>
+    <string name="fotos">" Fotos"</string>
+
+    <string name="girar">Girar</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="inverter">Inverter</string>
+    <string name="itens">Itens</string>
+
+    <string name="nao">Não</string>
+    <string name="nome">Nome</string>
     <string name="mais">Mais</string>
     <string name="menos">Menos</string>
+    <string name="mover">Mover</string>
+    <string name="ok">OK</string>
 
-    <string name="itens">Itens</string>
-    <string name="item_copiado">Item copiado</string>
-    <string name="itens_copiados">Itens copiados</string>
+    <string name="recortar">Recortar</string>
+    <string name="sair">Sair</string>
+    <string name="settings">Configurações</string>
+    <string name="sim">Sim</string>
+
+    <string name="vertical">Vertical</string>
+    <string name="video">" Vídeo"</string>
+    <string name="videos">" Vídeos"</string>
+    <string name="voltar">Voltar</string>
+
+    <!-- TODO: Textos -->
+    <string name="tela_cheia">Tela Cheia</string>
     <string name="item_movido">Item movido</string>
+    <string name="item_copiado">Item copiado</string>
+    <string name="album_hide">Álbuns Ocultos</string>
+    <string name="item_excluido">Item excluído</string>
+    <string name="selecionar_tudo">Marcar tudo</string>
     <string name="itens_movidos">Itens movidos</string>
-
-    <string name="msg_erro_delete">Não foi possível excluir este Item</string>
-    <string name="msg_erro_deletes">"Não foi possível excluir "</string>
-    <string name="msg_erro_copia">Não foi possível copiar este Item</string>
-    <string name="msg_erro_copias">Não foi possível copiar</string>
-    <string name="msg_erro_move">Não foi possível mover este Item</string>
-    <string name="msg_erro_moves">Não foi possível mover</string>
-    <string name="acao_cancelada">Cancelado</string>
+    <string name="carregando_ad">Carregando Ads</string>
     <string name="set_wallpaper">Papel de parede</string>
+    <string name="itens_copiados">Itens copiados</string>
+    <string name="reload_media">Recarregar Média</string>
+    <string name="deselecionar_tudo">Desmarcar tudo</string>
+    <string name="excluir_imagem">Excluir este item?</string>
+    <string name="itens_excluidos">" Itens excluídos"</string>
+    <string name="ordenar_album_por">Ordenar álbuns por:</string>
+    <string name="selecionar_intervalo">Selec. intervalo</string>
+    <string name="image_grid_descricao">Tipo de miniatura</string>
+    <string name="item_altura_descricao">Altura dos itens</string>
+    <string name="itens_selecionados">" Itens selecionados"</string>
+    <string name="nao_mostrar_novamente">Não mostrar novamente</string>
+    <string name="ordenar_photo_por">Ordenar fotos e vídeos por:</string>
+    <string name="mesclar_fotos_e_videos">Mesclar Fotos e Vídeos</string>
     <string name="papel_de_parede_aplicado">Papel de parede aplicado</string>
+    <string name="tutorial_double_click">Duplo clique para selecionar</string>
+    <string name="image_order_descricao">Ordenação dos itens pela data</string>
+    <string name="album_order_descricao">Ordenação dos albuns pela data</string>
+    <string name="tutorial_deslize">Deslize para alterar o número de colunas</string>
+    <string name="tutorial_long_click">Clique longo para visualizar a imagem</string>
+    <string name="mesclar_armazenamento_interno_e_externo">Mesclar armazenamento interno e externo</string>
+
+    <!-- TODO: Erros -->
+    <string name="erro_delete">Não foi possível excluir este Item</string>
+    <string name="erro_deletes">"Não foi possível excluir "</string>
+    <string name="erro_copia">Não foi possível copiar este Item</string>
+    <string name="erro_copias">Não foi possível copiar</string>
+    <string name="erro_move">Não foi possível mover este Item</string>
+    <string name="erro_moves">Não foi possível mover</string>
     <string name="erro_papel_de_parede">Erro ao aplicar o papel de parede</string>
     <string name="erro_papel_de_parede_not_supported">Ação não suportada pelo dispositivo</string>
 

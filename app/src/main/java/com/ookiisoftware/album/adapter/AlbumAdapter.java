@@ -27,6 +27,8 @@ import static android.widget.ImageView.ScaleType.FIT_CENTER;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
+//    private static final String TAG = "AlbumAdapter";
+
     private ArrayList<HashMap<String, String>> data;
     private ConstraintSet set = new ConstraintSet();
     private OnSwipeListener swipeListener;
@@ -50,12 +52,12 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     @Override
     public void onBindViewHolder(AlbumViewHolder holder, final int position) {
-        HashMap<String, String> song = data.get(+position);
-        String width = song.get(Item.KEY_ITEM_WIDTH);
-        String height = song.get(Item.KEY_ITEM_HEIGHT);
-        String path = song.get(Item.KEY_PATH);
-        String type = song.get(Item.KEY_ITEM_TYPE);
-        String ratio = "";
+        HashMap<String, String> item = data.get(+position);
+        String width = item.get(Item.KEY_ITEM_WIDTH);
+        String height = item.get(Item.KEY_ITEM_HEIGHT);
+        String path = item.get(Item.KEY_PATH);
+        String type = item.get(Item.KEY_ITEM_TYPE);
+        String ratio;
 
         holder.imageView.setId(position);
         if (type != null && type.equals(Constantes.ITEM_TYPE_IMAGE)) {
@@ -63,7 +65,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         } else {
             holder.videoIcon.setVisibility(View.VISIBLE);
         }
-        if(song.get(Item.KEY_ITEM_SELECTED) == null)
+        if(item.get(Item.KEY_ITEM_SELECTED) == null)
             holder.destaque.setVisibility(View.GONE);
         else
             holder.destaque.setVisibility(View.VISIBLE);
@@ -83,6 +85,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
                 ratio = String.format("%s:%s", width, height);
                 break;
             }
+            default: ratio = "";
         }
         set.clone(holder.constraintLayout);
         set.setDimensionRatio(holder.imageView.getId(), ratio);
@@ -189,7 +192,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         AlbumViewHolder(@NonNull View itemView) {
             super(itemView);
-            constraintLayout = itemView.findViewById(R.id.img_constraint);
+            constraintLayout = itemView.findViewById(R.id.constraint);
             destaque = itemView.findViewById(R.id.item_destaque);
             imageView = itemView.findViewById(R.id.photo);
             videoIcon = itemView.findViewById(R.id.video_icone);

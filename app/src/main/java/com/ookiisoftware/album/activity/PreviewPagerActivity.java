@@ -37,7 +37,6 @@ import com.ookiisoftware.album.auxiliar.Constantes;
 import com.ookiisoftware.album.auxiliar.Function;
 import com.ookiisoftware.album.modelo.Item;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -161,8 +160,8 @@ public class PreviewPagerActivity extends AppCompatActivity implements ViewPager
             }
             case R.id.preview_editar: {
                 Intent intent = new Intent(this, EditorActivity.class);
-                intent.putExtra(Constantes.IMAGE_EDITOR_PATH, imageList.get(viewPager.getCurrentItem()).get(Item.KEY_PATH));
-                intent.putExtra(Constantes.IMAGE_EDITOR_ID, imageList.get(viewPager.getCurrentItem()).get(Item.KEY_ITEM_ID));
+                intent.putExtra(Constantes.intent.EDITOR_PATH, imageList.get(viewPager.getCurrentItem()).get(Item.KEY_PATH));
+                intent.putExtra(Constantes.intent.EDITOR_ID, imageList.get(viewPager.getCurrentItem()).get(Item.KEY_ITEM_ID));
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
                 //Toast.makeText(this, "Função indisponível", Toast.LENGTH_SHORT).show();
@@ -461,11 +460,7 @@ public class PreviewPagerActivity extends AppCompatActivity implements ViewPager
 
             try {
                 assert path != null;
-                Glide.with(activity)
-                        .load(new File(path))
-                        .placeholder(R.drawable.ic_photo_dark)
-                        .error(R.drawable.ic_photo_dark)
-                        .into(imageView);
+                Glide.with(activity).load(path).into(imageView);
             } catch (Exception ignored) {}
 
             imageView.setSingleTapListener(this);

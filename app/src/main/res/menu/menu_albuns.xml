@@ -40,4 +40,7 @@
         android:icon="@drawable/ic_album_show_disabled"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/ads"
+        android:title="@string/ads"/>
+
 </menu>

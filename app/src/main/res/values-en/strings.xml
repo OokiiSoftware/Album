@@ -37,10 +37,10 @@
     <string name="itens_selecionados">" Selected items"</string>
     <string name="aguarde">Wait</string>
     <string name="item_altura_descricao">Height of items</string>
-    <string name="msg_erro_delete">Error deleting file</string>
+    <string name="erro_delete">Error deleting file</string>
     <string name="item_excluido">Deleted item</string>
     <string name="itens_excluidos">" Deleted items"</string>
-    <string name="msg_erro_deletes">"Couldn't delete "</string>
+    <string name="erro_deletes">"Couldn't delete "</string>
     <string name="ok">OK</string>
     <string name="_00_00">00:00</string>
     <string name="menu_auto_play">Autoplay Vídeos</string>
@@ -69,14 +69,17 @@
     <string name="itens_copiados">Copied items</string>
     <string name="item_movido">Moved item</string>
     <string name="itens_movidos">Moved items</string>
-    <string name="msg_erro_copia">This item could not be copied</string>
-    <string name="msg_erro_copias">Couldn\'t copy</string>
-    <string name="msg_erro_move">This item could not be moved</string>
-    <string name="msg_erro_moves">Could not move</string>
+    <string name="erro_copia">This item could not be copied</string>
+    <string name="erro_copias">Couldn\'t copy</string>
+    <string name="erro_move">This item could not be moved</string>
+    <string name="erro_moves">Could not move</string>
     <string name="acao_cancelada">Canceled</string>
     <string name="itens">Items</string>
     <string name="papel_de_parede_aplicado">Applied wallpaper</string>
     <string name="erro_papel_de_parede">Error applying wallpaper</string>
     <string name="erro_papel_de_parede_not_supported">Action not supported by the device</string>
     <string name="set_wallpaper">Wallpaper</string>
+    <string name="carregando_ad">Loading Ads</string>
+    <string name="tela_cheia">Full screen</string>
+    <string name="ads" translatable="false">Ads</string>
 </resources>

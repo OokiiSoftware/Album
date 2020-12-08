@@ -100,14 +100,22 @@ public class Constantes {
     }
     //==========================================================================================================
     public enum Type {
-        Fotos, Videos, Tudo
+        imagem, video, tudo
     }
     public enum Armazenamento {
-        Interno, Externo, Tudo
+        interno, externo, tudo
     }
     public enum Ordenacao {
         Nome, Data
     }
+
+    public static final String ITEM_TYPE_ALBUM = "album";
+    public static final String ITEM_TYPE_IMAGE = "imagem";
+    public static final String ITEM_TYPE_VIDEO = "video";
+
+    public static final String ITEM_INTERNO = "interno";
+    public static final String ITEM_EXTERNO = "externo";
+    public static final String ITEM_TUDO = "tudo";
 
     public static class album{
         public static final String HEIGHT = "album_height";
@@ -189,20 +197,16 @@ public class Constantes {
     public static class intent {
         public static final String ITEM_POSITION = "item_posic";
         public static final String TRANSITION_NAME = "transition_name";
+
+        public static final String EDITOR_PATH = "image_editor_path";
+        public static final String EDITOR_ID = "image_editor_id";
     }
 
     public static final String INICIALIZACAO = "inicializacao";
-
-    public static final String ITEM_TYPE_ALBUM = "album";
-    public static final String ITEM_TYPE_IMAGE = "imagem";
-    public static final String ITEM_TYPE_VIDEO = "video";
 
     public static final int LONGCLICK = 300;
     public static final int DOUBLETAP = 200;
     public static final int SWIPE_RADIO_LIMITE = 10;
     public static final int SWIPE_RANGE_LIMITE = 10;
-
-    public static final String IMAGE_EDITOR_PATH = "image_editor_path";
-    public static final String IMAGE_EDITOR_ID = "image_editor_id";
 
 }

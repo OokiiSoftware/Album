@@ -67,7 +67,7 @@ import static android.widget.ImageView.ScaleType.FIT_CENTER;
 public class AlbumActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     //region Variáveis
-    private static final String TAG = "AlbumActivity";
+//    private static final String TAG = "AlbumActivity";
     // Layout elements
     private Dialog dialog = null;
     private TextView fab_text_count;
@@ -110,7 +110,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
     private String ordenarPor;
     private Constantes.Type listar;
     private Constantes.Armazenamento armazenamento;
-    private int[] doisUltimos = new int[2];
+//    private int[] doisUltimos = new int[2];
     private int spanCount;
 
     private AlbunsAdapter adapterCopyMove;
@@ -345,6 +345,8 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         navBar = findViewById(R.id.single_album_navbar);
         navBar_2 = findViewById(R.id.single_album_navbar_2);
         recyclerView = findViewById(R.id.recycler);
+        fab_item_count = findViewById(R.id.fab_item_count);
+        fab_text_count = findViewById(R.id.fab_text_count);
         //endregion
 
         //region Navbar
@@ -370,35 +372,35 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
             String type = bundle.getString(Constantes.album.O_QUE_LISTAR);
             String arm = bundle.getString(Constantes.album.ARMAZENAMENTO);
             if (type == null)
-                type = Constantes.Type.Tudo.name();
+                type = Constantes.Type.tudo.name();
             if (arm == null)
-                arm = Constantes.Armazenamento.Tudo.name();
+                arm = Constantes.Armazenamento.tudo.name();
 
             switch (type) {
-                case "Fotos": {
-                    listar = Constantes.Type.Fotos;
+                case Constantes.ITEM_TYPE_IMAGE: {
+                    listar = Constantes.Type.imagem;
                     break;
                 }
-                case "Videos": {
-                    listar = Constantes.Type.Videos;
+                case Constantes.ITEM_TYPE_VIDEO: {
+                    listar = Constantes.Type.video;
                     break;
                 }
-                case "Tudo": {
-                    listar = Constantes.Type.Tudo;
+                case Constantes.ITEM_TUDO: {
+                    listar = Constantes.Type.tudo;
                     break;
                 }
             }
             switch (arm) {
-                case "Interno": {
-                    armazenamento = Constantes.Armazenamento.Interno;
+                case Constantes.ITEM_INTERNO: {
+                    armazenamento = Constantes.Armazenamento.interno;
                     break;
                 }
-                case "Externo": {
-                    armazenamento = Constantes.Armazenamento.Externo;
+                case Constantes.ITEM_EXTERNO: {
+                    armazenamento = Constantes.Armazenamento.externo;
                     break;
                 }
-                case "Tudo": {
-                    armazenamento = Constantes.Armazenamento.Tudo;
+                case Constantes.ITEM_TUDO: {
+                    armazenamento = Constantes.Armazenamento.tudo;
                     break;
                 }
             }
@@ -408,8 +410,6 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
 
         //region Mostrar tutorial e ler configurações
         pref = getSharedPreferences("info", MODE_PRIVATE);
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.GRIDE_ID, pref, false);
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.GRIDE_ID, pref, true);
         Constantes.firstInit.firstUse(this, Constantes.firstInit.DOUBLE_CLICK_ID, false);
         Constantes.firstInit.firstUse(this, Constantes.firstInit.LONG_CLICK_ID, false);
 
@@ -439,14 +439,12 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         //endregion
 
         //region Configuração do botão flutuante
-        fab_item_count = findViewById(R.id.fab_item_count);
-        fab_text_count = findViewById(R.id.fab_text_count);
         fab_item_count.hide();
         fab_item_count.setEnabled(false);
         fab_item_count.setOnClickListener(view -> {
             Intent intent = new Intent(AlbumActivity.this, EditorActivity.class);
-            intent.putExtra(Constantes.IMAGE_EDITOR_PATH, adapter.getSelected().get(Item.KEY_PATH));
-            intent.putExtra(Constantes.IMAGE_EDITOR_ID, Long.parseLong(Objects.requireNonNull(adapter.getSelected().get(Item.KEY_ITEM_ID))));
+            intent.putExtra(Constantes.intent.EDITOR_PATH, adapter.getSelected().get(Item.KEY_PATH));
+            intent.putExtra(Constantes.intent.EDITOR_ID, Long.parseLong(Objects.requireNonNull(adapter.getSelected().get(Item.KEY_ITEM_ID))));
             startActivity(intent);
             //Toast.makeText(SingleAlbumActivity.this, "Função indisponível", Toast.LENGTH_SHORT).show();
             RemoverSelecaoDeTodosOsItens();
@@ -474,13 +472,6 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         SELECIONAR_ITEM = false;
         fab_text_count.setText(null);
         fab_item_count.hide();
-
-        //region Config.IMAGE_ORDER_DIRECTION
-//        if (Config.photo.ORDER_DIRECTION.equals(Item.KEY_ORDER_DCS))
-//            menuItem_onder.setIcon(R.drawable.ic_order_dcs_enabled);
-//        else
-//            menuItem_onder.setIcon(R.drawable.ic_order_asc_enabled);
-        //endregion
 
         //region Animation
         bottonMenu(false);
@@ -523,7 +514,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
 
                 @Override
                 public void onAnimationRepeat(Animator animation) {}
-            });;
+            });
         }
     }
     private void bottonMenu_2(boolean mostrar) {
@@ -609,7 +600,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.popup_photo);
-        dialog.setOnDismissListener(dialog -> recyclerView.setLayoutFrozen(false));
+        dialog.setOnDismissListener(dialog -> recyclerView.suppressLayout(false));
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
@@ -644,19 +635,19 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                     int itemPosition = recyclerView.getChildAdapterPosition(v);
                     HashMap<String, String> item = adapterCopyMove.getItem(itemPosition);
                     String destino = item.get(Item.KEY_PATH);
-                    int acao = 0;
+                    int acao;
                     if (isCopy)
                         acao = Constantes.FILE_COPY;
                     else
                         acao = Constantes.FILE_MOVE;
 
-                    Import.Alert.snakeBar(dialog.getCurrentFocus(), getResources().getString(R.string.aguarde));
+                    Import.Alert.snakeBar(activity, getResources().getString(R.string.aguarde));
                     progressBar.setVisibility(View.VISIBLE);
                     disableAdapterCopyMoveClick = true;
                     background = new InBackground(activity, items, adapter, dialog, acao, destino);
                     background.execute();
                 } else
-                    Import.Alert.snakeBar(dialog.getCurrentFocus(), getResources().getString(R.string.aguarde));
+                    Import.Alert.snakeBar(activity, getResources().getString(R.string.aguarde));
             }
         };
         recyclerView.setAdapter(adapterCopyMove);
@@ -664,7 +655,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         cancel.setOnClickListener(v2 -> {
             if (background != null)
                 background.cancel(true);
-            Import.Alert.snakeBar(getCurrentFocus(), getResources().getString(R.string.acao_cancelada));
+            Import.Alert.snakeBar(activity, getResources().getString(R.string.acao_cancelada));
             dialog.dismiss();
         });
 
@@ -722,10 +713,10 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
 
             Cursor cursorImage;
             Cursor cursorVideo;
-            if (armazenamento == Constantes.Armazenamento.Interno) {
+            if (armazenamento == Constantes.Armazenamento.interno) {
                 cursorImage = new MergeCursor(new Cursor[]{cursorInternalImage});
                 cursorVideo = new MergeCursor(new Cursor[]{cursorInternalVideo});
-            } else if (armazenamento == Constantes.Armazenamento.Externo) {
+            } else if (armazenamento == Constantes.Armazenamento.externo) {
                 cursorImage = new MergeCursor(new Cursor[]{cursorExternalImage});
                 cursorVideo = new MergeCursor(new Cursor[]{cursorExternalVideo});
             } else {
@@ -735,55 +726,55 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
 
             //endregion
 
-            if (listar == Constantes.Type.Fotos || listar == Constantes.Type.Tudo)
+            if (listar == Constantes.Type.imagem || listar == Constantes.Type.tudo)
                 while (cursorImage.moveToNext()) {
-                String id;
-                String path;
-                String name;
-                String album;
-                String timestamp;
-                int size;
-                String height;
-                String width;
-                String orientation;
+                    String id;
+                    String path;
+                    String name;
+                    String album;
+                    String timestamp;
+                    String height;
+                    String width;
+                    String orientation;
+                    int size;
 
-                id = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID));
-                path = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-                name = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
-                album = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
-                timestamp = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
-                height = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT));
-                width = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH));
-                size = Integer.parseInt(cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
-                orientation = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.ORIENTATION));
+                    id = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID));
+                    path = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                    name = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+                    album = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
+                    timestamp = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
+                    height = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT));
+                    width = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH));
+                    size = Integer.parseInt(cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+                    orientation = cursorImage.getString(cursorImage.getColumnIndexOrThrow(MediaStore.Images.Media.ORIENTATION));
 
-                if (orientation == null)
-                    orientation = "0";
-                imageList.add(Item.mappingInbox(Constantes.ITEM_TYPE_IMAGE, id, album, name, path, timestamp,
+                    if (orientation == null)
+                        orientation = "0";
+                        imageList.add(Item.mappingInbox(Constantes.ITEM_TYPE_IMAGE, id, album, name, path, timestamp,
                         Function.converToTime(timestamp), null, Function.converToMb(size), height, width, orientation));
             }
 
-            if (listar == Constantes.Type.Videos || listar == Constantes.Type.Tudo)
+            if (listar == Constantes.Type.video || listar == Constantes.Type.tudo)
                 while (cursorVideo.moveToNext()) {
-                String id;
-                String path;
-                String name;
-                String album;
-                String timestamp;
-                int size;
-                String height;
-                String width;
+                    String id;
+                    String path;
+                    String name;
+                    String album;
+                    String timestamp;
+                    String height;
+                    String width;
+                    int size;
 
-                id = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns._ID));
-                path = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns.DATA));
-                name = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME));
-                album = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME));
-                timestamp = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_MODIFIED));
-                height = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT));
-                width = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH));
-                size = Integer.parseInt(cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
+                    id = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns._ID));
+                    path = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns.DATA));
+                    name = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME));
+                    album = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME));
+                    timestamp = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_MODIFIED));
+                    height = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT));
+                    width = cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH));
+                    size = Integer.parseInt(cursorVideo.getString(cursorVideo.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
 
-                imageList.add(Item.mappingInbox(Constantes.ITEM_TYPE_VIDEO, id, album, name, path, timestamp,
+                    imageList.add(Item.mappingInbox(Constantes.ITEM_TYPE_VIDEO, id, album, name, path, timestamp,
                         Function.converToTime(timestamp), null, Function.converToMb(size), height, width, null));
             }
 
@@ -797,7 +788,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
         @Override
         @SuppressLint("ClickableViewAccessibility")
         protected void onPostExecute(String xml) {
-            adapter = new AlbumAdapter(AlbumActivity.this, imageList, onSwipeListener){
+            adapter = new AlbumAdapter(activity, imageList, onSwipeListener){
                 @Override
                 public void onClick(View v) {
                     clicks++;
@@ -923,7 +914,7 @@ public class AlbumActivity extends AppCompatActivity implements BottomNavigation
                             else
                                 popupPhoto(false, uri);
                         }
-                        recyclerView.setLayoutFrozen(true);
+                        recyclerView.suppressLayout(true);
                     }
                     return super.onLongClick(v);
                 }

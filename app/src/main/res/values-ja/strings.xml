@@ -37,10 +37,10 @@
     <string name="itens_selecionados">選択したアイテム</string>
     <string name="aguarde">待って</string>
     <string name="item_altura_descricao">アイテムの高さ</string>
-    <string name="msg_erro_delete">ファイルの削除エラー</string>
+    <string name="erro_delete">ファイルの削除エラー</string>
     <string name="item_excluido">削除されたアイテム</string>
     <string name="itens_excluidos">削除されたアイテム</string>
-    <string name="msg_erro_deletes">削除できませんでした</string>
+    <string name="erro_deletes">削除できませんでした</string>
     <string name="ok">OK</string>
     <string name="_00_00">00:00</string>
     <string name="menu_auto_play">自動再生動画</string>
@@ -69,14 +69,17 @@
     <string name="itens_copiados">コピーしたアイテム</string>
     <string name="item_movido">移動したアイテム</string>
     <string name="itens_movidos">移動したアイテム</string>
-    <string name="msg_erro_copia">このアイテムはコピーできませんでした</string>
-    <string name="msg_erro_copias">コピーできませんでした</string>
-    <string name="msg_erro_move">このアイテムは移動できませんでした</string>
-    <string name="msg_erro_moves">移動できませんでした</string>
+    <string name="erro_copia">このアイテムはコピーできませんでした</string>
+    <string name="erro_copias">コピーできませんでした</string>
+    <string name="erro_move">このアイテムは移動できませんでした</string>
+    <string name="erro_moves">移動できませんでした</string>
     <string name="acao_cancelada">キャンセルされました</string>
     <string name="itens">アイテム</string>
     <string name="papel_de_parede_aplicado">応用壁紙</string>
     <string name="erro_papel_de_parede">壁紙の適用エラー</string>
     <string name="erro_papel_de_parede_not_supported">デバイスでサポートされていないアクション</string>
     <string name="set_wallpaper">壁紙</string>
+    <string name="tela_cheia">全画面表示</string>
+    <string name="carregando_ad">広告を読み込んでいます</string>
+    <string name="ads" translatable="false">広告</string>
 </resources>

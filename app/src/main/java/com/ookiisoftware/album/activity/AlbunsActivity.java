@@ -204,6 +204,11 @@ public class AlbunsActivity extends AppCompatActivity {
                 popupSettings();
                 break;
             }
+            case R.id.ads: {
+                Intent intent = new Intent(activity, AdsActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -240,16 +245,12 @@ public class AlbunsActivity extends AppCompatActivity {
     private void Init() {
         recyclerView = findViewById(R.id.recycler);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        FloatingActionButton fab_camera = findViewById(R.id.fab_camera);
         setSupportActionBar(toolbar);
 
         //region Ler Configs
         pref = getSharedPreferences("info", MODE_PRIVATE);
         Constantes.firstInit.firstUse(this, Constantes.firstInit.DESLIZE_ID, false);
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.TAMANHO_ID, pref, false);
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.ORDEM_ID, pref, false);
-//
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.TAMANHO_ID, pref, true);
-//        Constantes.firstInit.firstUse(this, Constantes.firstInit.ORDEM_ID, pref, true);
 
         Config.album.HEIGHT = pref.getInt(Constantes.album.HEIGHT, Constantes.album.DEFAULT_HEIGHT);
         Config.album.GRID = pref.getBoolean(Constantes.album.GRID, Config.album.GRID);
@@ -284,7 +285,6 @@ public class AlbunsActivity extends AppCompatActivity {
         Verificar_permicao();
 
         //region Botão flutuante
-        FloatingActionButton fab_camera = findViewById(R.id.fab_camera);
         fab_camera.setOnClickListener(view -> {
             String[] PERMISSIONS1 = {Manifest.permission.CAMERA};
             if (!Function.hasPermissions(getBaseContext(), PERMISSIONS1)) {
@@ -439,14 +439,14 @@ public class AlbunsActivity extends AppCompatActivity {
             Cursor cursorExternalVideo = Import.getContentResolver(activity, Constantes.video.uriExternal, Constantes.album.projectionVideo, selection);
             Cursor cursorInternalVideo = Import.getContentResolver(activity, Constantes.video.uriInternal, Constantes.album.projectionVideo, selection);
 
-            Constantes.Type listar = Constantes.Type.Tudo;
+            Constantes.Type listar = Constantes.Type.tudo;
 
             if (Config.album.MESCLAR_ARMAZENAMENTO) {
                 Cursor cursorImage = new MergeCursor(new Cursor[]{cursorExternalImage,cursorInternalImage});
                 Cursor cursorVideo = new MergeCursor(new Cursor[]{cursorExternalVideo, cursorInternalVideo});
 
-                MoveCursorImage(cursorImage, listar, Constantes.Armazenamento.Tudo);
-                MoveCursorVideo(cursorVideo, listar, Constantes.Armazenamento.Tudo);
+                MoveCursorImage(cursorImage, listar, Constantes.Armazenamento.tudo);
+                MoveCursorVideo(cursorVideo, listar, Constantes.Armazenamento.tudo);
 
                 cursorImage.close();
                 cursorVideo.close();
@@ -457,11 +457,11 @@ public class AlbunsActivity extends AppCompatActivity {
                 Cursor cursorVI = new MergeCursor(new Cursor[]{cursorInternalVideo});
                 Cursor cursorVE = new MergeCursor(new Cursor[]{cursorExternalVideo});
 
-                MoveCursorImage(cursorII, listar, Constantes.Armazenamento.Interno);
-                MoveCursorImage(cursorIE, listar, Constantes.Armazenamento.Externo);
+                MoveCursorImage(cursorII, listar, Constantes.Armazenamento.interno);
+                MoveCursorImage(cursorIE, listar, Constantes.Armazenamento.externo);
 
-                MoveCursorVideo(cursorVI, listar, Constantes.Armazenamento.Interno);
-                MoveCursorVideo(cursorVE, listar, Constantes.Armazenamento.Externo);
+                MoveCursorVideo(cursorVI, listar, Constantes.Armazenamento.interno);
+                MoveCursorVideo(cursorVE, listar, Constantes.Armazenamento.externo);
 
                 cursorII.close();
                 cursorIE.close();
@@ -565,10 +565,10 @@ public class AlbunsActivity extends AppCompatActivity {
                 countPhoto = Item.getCountFotos(activity, album);
 
                 if (!Config.album.MESCLAR_FOTOS_VIDEOS)
-                    listar = Constantes.Type.Fotos;
+                    listar = Constantes.Type.imagem;
 
-                albumList.add(Item.mappingInbox(Constantes.ITEM_TYPE_ALBUM, album, path, timestamp, Function.converToTime(timestamp),
-                        countPhoto, true, listar, armazenamento));
+                albumList.add(Item.mappingInbox(Constantes.ITEM_TYPE_ALBUM, album, path, timestamp,
+                        Function.converToTime(timestamp), countPhoto, true, listar, armazenamento));
             }
         }
         @SuppressLint("InlinedApi")
@@ -585,7 +585,7 @@ public class AlbunsActivity extends AppCompatActivity {
                 countPhoto = Item.getCountVideos(activity, album);
 
                 if (!Config.album.MESCLAR_FOTOS_VIDEOS)
-                    listar = Constantes.Type.Videos;
+                    listar = Constantes.Type.video;
 
                 HashMap<String, String> item = Item.mappingInbox(Constantes.ITEM_TYPE_ALBUM, album, path, timestamp,
                         Function.converToTime(timestamp), countPhoto, false, listar, armazenamento);

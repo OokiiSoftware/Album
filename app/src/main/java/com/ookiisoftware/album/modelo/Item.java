@@ -82,7 +82,7 @@ public class Item {
             try {
                 exif = new ExifInterface(path);
             } catch (IOException ex) {
-                Import.Alert.erro(TAG, ex);
+                Import.Alert.e(TAG, ex);
             }
 
             int orientacao = -1;

@@ -138,25 +138,25 @@ public class InBackground extends AsyncTask<Void, Void, Boolean> {
             switch (acao) {
                 case Constantes.FILE_DELETE: {
                     if (itemsCount == 1)
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_delete));
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_delete));
                     else
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_deletes) + " " + erros
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_deletes) + " " + erros
                                 + " " + activity.getResources().getString(R.string.itens));
                     break;
                 }
                 case Constantes.FILE_COPY: {
                     if (itemsCount == 1)
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_copia));
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_copia));
                     else
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_copias) + " " + erros
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_copias) + " " + erros
                                 + " " + activity.getResources().getString(R.string.itens));
                     break;
                 }
                 case Constantes.FILE_MOVE: {
                     if (itemsCount == 1)
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_move));
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_move));
                     else
-                        Import.Alert.toast(activity, activity.getResources().getString(R.string.msg_erro_moves) + " " + erros
+                        Import.Alert.toast(activity, activity.getResources().getString(R.string.erro_moves) + " " + erros
                                 + " " + activity.getResources().getString(R.string.itens));
                     break;
                 }
@@ -257,7 +257,7 @@ public class InBackground extends AsyncTask<Void, Void, Boolean> {
             new File(inputPath + inputFile).delete();
             return true;
         } catch (Exception ex) {
-            Import.Alert.erro(TAG, ex);
+            Import.Alert.e(TAG, ex);
             return false;
         }
     }
@@ -289,7 +289,7 @@ public class InBackground extends AsyncTask<Void, Void, Boolean> {
             return true;
         }
         catch (Exception ex) {
-            Import.Alert.erro(TAG, ex);
+            Import.Alert.e(TAG, ex);
             return false;
         }
     }

@@ -75,8 +75,8 @@ public class EditorActivity extends AppCompatActivity implements BottomNavigatio
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
-            image_path = bundle.getString(Constantes.IMAGE_EDITOR_PATH);
-            image_id = bundle.getLong(Constantes.IMAGE_EDITOR_ID);
+            image_path = bundle.getString(Constantes.intent.EDITOR_PATH);
+            image_id = bundle.getLong(Constantes.intent.EDITOR_ID);
             image_uri = Uri.parse("file://" + image_path);
         }
         cropImageView.setImageUriAsync(image_uri);

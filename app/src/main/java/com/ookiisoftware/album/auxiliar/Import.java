@@ -12,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -71,26 +70,33 @@ public class Import {
             Toast.makeText(activity, texto, Toast.LENGTH_LONG).show();
         }
 
-        public static void snakeBar(View view, String texto){
-            Snackbar.make(view, texto, Snackbar.LENGTH_LONG).setAction("Fechar", null).show();
+        public static void snakeBar(Activity activity, String texto) {
+            try {
+                if (activity.getCurrentFocus() == null)
+                    toast(activity, texto);
+                else
+                    Snackbar.make(activity.getCurrentFocus(), texto, Snackbar.LENGTH_LONG).setAction("Fechar", null).show();
+            } catch (Exception ignored) {
+                toast(activity, texto);
+            }
         }
 
-        public static void msg(String tag, String titulo, String texto){
+        public static void d(String tag, String titulo, String texto){
             Log.e(tag, "msg: " + titulo + ": " + texto);
         }
 
-        public static void msg(String tag, String titulo, String texto, String msg){
+        public static void d(String tag, String titulo, String texto, String msg){
             Log.e(tag, "msg: " + titulo + ": " + texto + ": " + msg);
         }
 
-        public static void erro(String tag, Exception ex){
+        public static void e(String tag, Exception ex){
             String msg = "erro:";
             msg += "\nMensagem: "+ ex.getMessage();
             msg += "\nLocalizedMessage: "+ ex.getLocalizedMessage();
             msg += "\n-------";
             Log.e(tag, msg);
         }
-        public static void erro(String tag, String titulo, Exception ex){
+        public static void e(String tag, String titulo, Exception ex){
             String msg = "erro:";
             msg += "\nMétodo: "+ titulo;
             msg += "\nMensagem: "+ ex.getMessage();
@@ -98,7 +104,7 @@ public class Import {
             msg += "\n-------";
             Log.e(tag, msg);
         }
-        public static void erro(String tag, String titulo, String texto){
+        public static void e(String tag, String titulo, String texto){
             Log.e(tag, "erro: " + titulo + ": " + texto);
         }
     }
@@ -120,7 +126,7 @@ public class Import {
             try {
                 bm = BitmapFactory.decodeFile(src);
             } catch (Exception ex) {
-                Alert.erro(TAG, "loadBitmap", ex);
+                Alert.e(TAG, "loadBitmap", ex);
             }
             return bm;
         }
@@ -132,10 +138,10 @@ public class Import {
                     if(wallpaperManager.isWallpaperSupported()) {
                         try {
                             wallpaperManager.setBitmap(bm);
-                            Alert.snakeBar(activity.getCurrentFocus(), activity.getResources().getString(R.string.papel_de_parede_aplicado));
+                            Alert.snakeBar(activity, activity.getResources().getString(R.string.papel_de_parede_aplicado));
                         } catch (IOException ex) {
                             Alert.toast(activity, activity.getResources().getString(R.string.erro_papel_de_parede));
-                            Alert.erro(TAG, "reloadWallpaper 0", ex);
+                            Alert.e(TAG, "reloadWallpaper 0", ex);
                         }
                     }else{
                         Alert.toast(activity, activity.getResources().getString(R.string.erro_papel_de_parede_not_supported));
@@ -143,9 +149,9 @@ public class Import {
                 }else{
                     try {
                         wallpaperManager.setBitmap(bm);
-                        Alert.snakeBar(activity.getCurrentFocus(), activity.getResources().getString(R.string.papel_de_parede_aplicado));
+                        Alert.snakeBar(activity, activity.getResources().getString(R.string.papel_de_parede_aplicado));
                     } catch (IOException ex) {
-                        Alert.erro(TAG, "reloadWallpaper 1", ex);
+                        Alert.e(TAG, "reloadWallpaper 1", ex);
                     }
                 }
             }else{

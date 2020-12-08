@@ -79,7 +79,7 @@ public class AlbunsAdapter extends RecyclerView.Adapter<AlbunsAdapter.AlbunsView
             holder.video_count.setText(video_count);
         }
 
-        if (type != null && type.equals(Constantes.Type.Videos.name()))
+        if (type != null && type.equals(Constantes.Type.video.name()))
             holder.video_icon.setVisibility(View.VISIBLE);
         else
             holder.video_icon.setVisibility(View.GONE);
